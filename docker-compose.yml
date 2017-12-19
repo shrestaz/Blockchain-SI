@@ -1,0 +1,50 @@
+version: "2.1"
+
+services:
+  node1:
+    container_name: node1
+    image: thatonedroid/blockchain-si
+    ports:
+      - "3001:3001"
+    networks:
+      - blockchain
+  node2:
+    environment:
+      - PEERS=ws://node1:6001
+    container_name: node2
+    image: thatonedroid/blockchain-si
+    ports:
+      - "3002:3001"
+    networks:
+      - blockchain
+    links:
+      - node1:node1
+  node3:
+    environment:
+      - PEERS=ws://node2:6001
+      - PEERS=ws://node1:6001
+    container_name: node3
+    image: thatonedroid/blockchain-si
+    ports:
+      - "3003:3001"
+    networks:
+      - blockchain
+    links:
+      - node2:node2
+  node4:
+    environment:
+      - PEERS=ws://node3:6001
+      - PEERS=ws://node2:6001
+      - PEERS=ws://node1:6001
+    container_name: node4
+    image: thatonedroid/blockchain-si
+    ports:
+      - "3004:3001"
+    networks:
+      - blockchain
+    links:
+      - node3:node3
+
+networks:
+  blockchain:
+    driver: bridge
