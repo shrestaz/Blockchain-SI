@@ -1,0 +1,181 @@
+#!/bin/bash
+clear
+echo "
+██████╗ ██╗      ██████╗  ██████╗██╗  ██╗     ██████╗██╗  ██╗ █████╗ ██╗███╗   ██╗
+██╔══██╗██║     ██╔═══██╗██╔════╝██║ ██╔╝    ██╔════╝██║  ██║██╔══██╗██║████╗  ██║
+██████╔╝██║     ██║   ██║██║     █████╔╝     ██║     ███████║███████║██║██╔██╗ ██║
+██╔══██╗██║     ██║   ██║██║     ██╔═██╗     ██║     ██╔══██║██╔══██║██║██║╚██╗██║
+██████╔╝███████╗╚██████╔╝╚██████╗██║  ██╗    ╚██████╗██║  ██║██║  ██║██║██║ ╚████║
+╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝     ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝
+                                                                                  
+"
+echo " "
+echo " "
+echo "This script creates a reproducible and interactive setup of our blockchain implementation."
+echo " "
+echo "Please read everything to understand to what's going on."
+echo " "
+echo "You must have docker && docker-compose installed. It will download our docker-compose.yml file and run docker-compose up -d, which starts the project."
+echo " "
+echo " "
+echo "You can press Ctrl + C anytime you want to exit."
+echo " "
+read -p "Press ENTER to continue..."
+clear
+echo " "
+echo ">>>>>>>>>>  Downloading docker-compose.yml file...  <<<<<<<<<< "
+echo " "
+wget https://raw.githubusercontent.com/shrestaz/Blockchain-SI/master/docker-compose.yml
+echo " "
+echo ">>>>>>>>>>  Download Complete!  <<<<<<<<<< "
+echo " "
+echo ">>>>>>>>>>  Initializing docker compose....  <<<<<<<<<< "
+echo " "
+echo " "
+docker-compose up -d
+echo " "
+echo " "
+echo "Now the project is running."
+echo " "
+echo "You can access the four nodes by pointing your browser to:"
+echo "Node1: http://localhost:3001/blocks"
+echo "Node2: http://localhost:3002/blocks"
+echo "Node3: http://localhost:3003/blocks" 
+echo "Node4: http://localhost:3004/blocks"
+echo " "
+echo " "
+echo "Or just follow through to access the nodes via your ENTER key."
+echo " "
+read -p "Press ENTER to continue..."
+clear
+echo "The following are the hard-coded first(Genesis) blocks on each of the nodes."
+echo " "
+echo " "
+echo "Block 1"
+curl http://localhost:3001/blocks
+echo " "
+echo " "
+echo "Block 2"
+curl http://localhost:3002/blocks
+echo " "
+echo " "
+echo "Block 3"
+curl http://localhost:3003/blocks
+echo " "
+echo " "
+echo "Block 4"
+curl http://localhost:3004/blocks
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo "Next, we'll add more blocks."
+echo " "
+echo " "
+echo "We'll add a new block to node 3, i.e localhost:3003, with data ****Merry Christmas****. Keep an eye on the hash value to make sure its mined properly."
+read -p "Press ENTER to continue..."
+clear
+echo " "
+echo " "
+curl -H "Content-type:application/json" --data '{"data" : "****Merry Christmas****"}' http://localhost:3001/mineBlock
+echo "Please read the documentation on GitHub to learn how to add blocks and view peers from any node."
+echo " "
+echo " "
+echo " "
+echo "We added a new block to node 3 with data ****Merry Christmas****. But since its a peer to peer connection, all other nodes should have the same blocks."
+echo " "
+echo "Let's see if that is true."
+echo " "
+read -p "Press ENTER to continue"
+clear
+echo " "
+echo "Node 1"
+curl http://localhost:3001/blocks
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo "Node 2"
+curl http://localhost:3002/blocks
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo "Node 3"
+curl http://localhost:3003/blocks
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo "Node 4"
+curl http://localhost:3004/blocks
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo "Voilá. Next, we will stop node 2, add new blocks to node1 with data ****And a Happy New Year!!**** and check if other nodes receives the new block."
+echo " "
+read -p "Press ENTER to continue..."
+clear
+echo "Node2 is stopping... "
+echo " "
+docker stop node2
+echo " "
+echo "Node 2 is stopped. "
+echo " "
+echo "Adding new block with data ****And a Happy New Year!!**** on node1."
+echo " "
+echo " "
+curl -H "Content-type:application/json" --data '{"data" : "****And a Happy New Year!!****"}' http://localhost:3001/mineBlock
+echo " "
+echo " "
+echo " "
+echo "Node 1"
+curl http://localhost:3001/blocks
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo "Node 3"
+curl http://localhost:3003/blocks
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo "Node 4 "
+curl http://localhost:3004/blocks
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo "Fantastic. A true p2p connection."
+echo " "
+echo "After you press ENTER, the entire setup will shutdown, and dependencies will be removed."
+echo " "
+echo "You were a great audience."
+echo " "
+read -p "Press ENTER to continue..."
+clear
+echo " "
+echo "Thank you for your time."
+docker-compose down
+docker rmi thatonedroid/blockchain-si:latest -f
+rm ./docker-compose.yml
+echo " "
+echo " "
+echo " "
+curl https://raw.githubusercontent.com/shrestaz/Blockchain-SI/master/tree.txt
