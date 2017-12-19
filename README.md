@@ -1,8 +1,8 @@
-#Blockchain assignment for System Integration
+# Blockchain assignment for System Integration
 
 ## Manish Shrestha
 
-###To get started:
+### To get started:
 
 **You only need the Docker-compose.yml file**
 
