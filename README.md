@@ -10,9 +10,11 @@
 1. [Download the shell script from here](https://raw.githubusercontent.com/shrestaz/Blockchain-SI/master/blockchain-interactive.sh)
 
 2. Run this command from a terminal, where you downloaded the file to.
+
 `chmod +x blockchain-interactive.sh`
 
 3. Run this command and follow the instructions.
+
 `./blockchain-interactive.sh`
 
 ------------------------
@@ -43,7 +45,7 @@ The whole project is deployed on docker hub as an image.
 
 6. Repeat step 4 with different data and on different nodes.
 -----------------------
-## Optional: Checking if p2p works
+### Optional for method 2: Checking if p2p works
 
 ### Now we stop one of the nodes and see if the existing nodes still communicate with each other.
 
