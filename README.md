@@ -4,11 +4,26 @@
 
 ### To get started:
 
+> ### Note: This setup assumes you are running Linux environment. If not, please adjust accordingly.
+
+## **Method 1**
+1. [Download the shell script from here](https://raw.githubusercontent.com/shrestaz/Blockchain-SI/master/blockchain-interactive.sh)
+
+2. Run this command from a terminal, where you downloaded the file to.
+`chmod +x blockchain-interactive.sh`
+
+3. Run this command and follow the instructions.
+`./blockchain-interactive.sh`
+
+------------------------
+
+## **Method 2**
+
 **You only need the Docker-compose.yml file**
 
 The whole project is deployed on docker hub as an image.
 
-1. Download the docker-compose.yml file.
+1. [Download the docker-compose.yml file from here.](https://raw.githubusercontent.com/shrestaz/Blockchain-SI/master/docker-compose.yml)
 
 2. On a terminal, run `docker-compose up`
 
