@@ -4,7 +4,7 @@
 
 Blockchain is a technology that allows for fast, secure and transparent peer-to-peer transfer of digital goods including money and intellectual property. It allows for those information to be distributed and not copied. It can also be defined as an incorruptible digital ledger of transactions.
 
-* While being originally formulated for digitally currency, “Bitcoin”, there has evolved other potential uses of this technology. *
+*While being originally formulated for digitally currency, “Bitcoin”, there has evolved other potential uses of this technology.*
 
 Blockchain holds the information as a shared and continually reconciled database. Since it is shared and hosted by millions of computers simultaneously, it is truly public and easily verifiable. There doesn’t exist a centralized version which can be hacked and/or tampered with.
 
@@ -17,16 +17,22 @@ Distributed database
 
 The use cases of this technology has spread like wildfire. It is used widely on online transactions. It is also implemented on day-to-day tools like GitHub and Google Docs, for example.
 
-* Source: https://blockgeeks.com/guides/what-is-blockchain-technology/
+*Source: https://blockgeeks.com/guides/what-is-blockchain-technology/*
 
 ## Requirements:
 
 The following are the formal requirements for the project.
-A peer-to-peer networking
-A blockchain network consisting of 4 nodes.
-An implementation with interactive API endpoint
-Reproducible setup in a Linux based system with example nodes and test scenario
-Demonstration of the running system
+
+1. A peer-to-peer networking
+
+2. A blockchain network consisting of 4 nodes.
+
+3. An implementation with interactive API endpoint
+
+4. Reproducible setup in a Linux based system with example nodes and test scenario
+
+5. Demonstration of the running system
+
 [A complete description provided for the requirements can be found here.](https://github.com/datsoftlyngby/soft2017fall-system-integration-teaching-material/blob/master/assignments/Blockchain.md)
 
 ## Implementation:
@@ -39,25 +45,25 @@ It also uses HTTP interface to interact with a node and Websockets to communicat
 
 The nodes exposes two webservers.
 
-For user interaction : HTTP server
+1. For user interaction : HTTP server
 
-Peer-to-peer connection between nodes: Websocket server
+2. Peer-to-peer connection between nodes: Websocket server
 
 ### Block Structure:
 
 The structure of the block consists of:
 
-Index: An auto incrementing index as new blocks are added.
+- Index: An auto incrementing index as new blocks are added.
+ 
+- Previous hash: Hash of the previous block to calculate new block’s hash. It ensure integrity when adding to the blockchain.
 
-Previous hash: Hash of the previous block to calculate new block’s hash. It ensure integrity when adding to the blockchain.
+- Time stamp: the current timestamp from collected from the host machine to log the new block.
 
-Time stamp: the current timestamp from collected from the host machine to log the new block.
+- Data: This data is the only manual input from the user. This can be any piece of information, the user wants to add to the blockchain.
 
-Data: This data is the only manual input from the user. This can be any piece of information, the user wants to add to the blockchain.
+- Hash: This is the hash value is calculated after all the above variables has been fulfilled, using SHA256 cryptographic hash function.
 
-Hash: This is the hash value is calculated after all the above variables has been fulfilled, using SHA256 cryptographic hash function.
-
-Nonce: This is the Proof-of-Work part of the blockchain, calculated by the method `mineblock()`. This is calculated until the mined hash has a difficulty of level 4 (which can be adjusted as needed), meaning the first 4 values of the above mined hash equals to 0.
+- Nonce: This is the Proof-of-Work part of the blockchain, calculated by the method `mineblock()`. This is calculated until the mined hash has a difficulty of level 4 (which can be adjusted as needed), meaning the first 4 values of the above mined hash equals to 0.
 
 ```class Block {
     constructor(index, previousHash, timestamp, data, hash) {
