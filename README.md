@@ -8,12 +8,15 @@ Blockchain is a technology that allows for fast, secure and transparent peer-to-
 
 Blockchain holds the information as a shared and continually reconciled database. Since it is shared and hosted by millions of computers simultaneously, it is truly public and easily verifiable. There doesn’t exist a centralized version which can be hacked and/or tampered with.
 
-To summarize, blockchain consists of
+To summarize, blockchain consists of:
 
-A network of nodes
-Decentralization
-Transparent and incorruptible
-Distributed database
+1. A network of nodes
+
+2. Decentralization
+
+3. Transparent and incorruptible
+
+4. Distributed database
 
 The use cases of this technology has spread like wildfire. It is used widely on online transactions. It is also implemented on day-to-day tools like GitHub and Google Docs, for example.
 
@@ -42,6 +45,7 @@ It also uses HTTP interface to interact with a node and Websockets to communicat
 
 ### Architecture
 
+![Architecture](https://lh3.googleusercontent.com/A8pty_TVR6pp6EPdl9CFXRFJw37ieJ5uxn7VeuT-ZmTh_SXL-4JI3aIhO_R7F4gDbzNWKDP1n039wQ=s350 "Architecture")
 
 The nodes exposes two webservers.
 
@@ -77,14 +81,14 @@ The structure of the block consists of:
 ```
 
 
-
+![enter image description here](https://lh3.googleusercontent.com/gR1ffSlHGbPGq9JhC-2IGPiMqaPMNSzglGxzd93WbCNSffssOutCQ-oWdrg4AbTwPtiUV0lr-lCN0Q=s500 "block.png")
 
 
 ### Block Hash:
 
 The following method mines the hash of the block with difficulty 4. This is to keep the integrity of the data.
 
- ```
+```
     calculateHash() {
         return CryptoJS(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString();
     }
@@ -139,15 +143,15 @@ var initHttpServer = () => {
 ```
 The users can do the following with the nodes:
 
-List all blocks: using `/blocks` route
+- List all blocks: using `/blocks` route
 
-Create and add new block on a node with desired data: using `/mineblock` route
+- Create and add new block on a node with desired data: using `/mineblock` route
 
-List all peer: using `/peers` route
+- List all peer: using `/peers` route
 
-Add new peer: using `/addPeer` route
+- Add new peer: using `/addPeer` route
 
-*Source: https://medium.com/@lhartikk/a-blockchain-in-200-lines-of-code-963cc1cc0e54
+*Source: https://medium.com/@lhartikk/a-blockchain-in-200-lines-of-code-963cc1cc0e54*
 
 
 
@@ -188,7 +192,6 @@ The main problem with this approach is that on the message received from the chi
 The picture above shows how it works. Only the `main.js` is executed with the command `node main.js` and in the method `_addBlock`,  the mining will be done.
 
 On other hand, if the project was implemented with Java, then we could have used Futures structure and the mining implement successfully. 
-
 
 
 
