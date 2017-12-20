@@ -51,19 +51,19 @@ clear
 echo "The following are the hard-coded first(Genesis) blocks on each of the nodes."
 echo " "
 echo " "
-echo "Block 1"
+echo "Node 1"
 curl http://localhost:3001/blocks
 echo " "
 echo " "
-echo "Block 2"
+echo "Node 2"
 curl http://localhost:3002/blocks
 echo " "
 echo " "
-echo "Block 3"
+echo "Node 3"
 curl http://localhost:3003/blocks
 echo " "
 echo " "
-echo "Block 4"
+echo "Node 4"
 curl http://localhost:3004/blocks
 echo " "
 echo " "
