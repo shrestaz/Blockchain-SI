@@ -118,6 +118,8 @@ All the nodes are synchronized with each other. Meaning, each nodes listens for 
 
 ### Nodes:
 The user is able to interact with the nodes using an HTTP server.
+
+This will use
 ```
 var initHttpServer = () => {
     var app = express();
@@ -141,15 +143,29 @@ var initHttpServer = () => {
     app.listen(http_port, () => console.log('Listening http on port: ' + http_port));
 };
 ```
+To interact with the nodes, one can use programs such as POSTMAN or `curl` from the terminal. We'll use the latter for this example.
+
 The users can do the following with the nodes:
 
 - List all blocks: using `/blocks` route
 
+```curl http://localhost:3001/blocks```
+
 - Create and add new block on a node with desired data: using `/mineblock` route
 
+```sh
+curl -H "Content-type:application/json" --data '{"data" : "I am the second block."}' http://localhost:3004/mineBlock
+```
 - List all peer: using `/peers` route
 
+```curl http://localhost:3002/peers```
+
 - Add new peer: using `/addPeer` route
+
+```sh
+curl -H "Content-type:application/json" --data '{"peer" : "ws://localhost:6001"}' http://localhost:3003/addPeer
+
+```
 
 *Source: https://medium.com/@lhartikk/a-blockchain-in-200-lines-of-code-963cc1cc0e54*
 
@@ -166,7 +182,7 @@ https://sleepy-cove-43230.herokuapp.com
 
 When making a post request, the block object is passed, mining process initiates and hash is returned.
 
-** Alternate method 1: **
+**Alternate method 1:**
 
 We can create a few servers like this, first calculating nonce starting from 0 to 2000, second calculating from 2000 to 4000 and so on. Dividing the process and initiating them in parallel would result in faster mining approach.
 
