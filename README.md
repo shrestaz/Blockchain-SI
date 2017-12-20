@@ -1,6 +1,6 @@
 # Blockchain assignment for System Integration
 
-## Manish Shrestha
+## Manish Shrestha & Yoana Dandarova
 
 ### To get started:
 
