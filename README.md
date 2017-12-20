@@ -1,6 +1,53 @@
 # Blockchain
+### <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Simpleicons_Business_pencil.svg" width="18" height="18" /> Group LoanBorker 15: 
 
-## What is Blockchain?
+Yoana Dandarova
+
+Manish Shrestha
+
+-------------------------
+
+### [Click here for video demonstration of the project.](https://drive.google.com/file/d/12dFBzNjHaZ5zsX1EUBjjVwzSxb-1nYfO/view?usp=sharing)
+
+### Bash Script
+
+To replicate it on a Linux machine via a script, [please download the interactive script from here.](https://raw.githubusercontent.com/shrestaz/Blockchain-SI/master/blockchain-interactive.sh)
+
+- To make it executable, run the command: `chmod +x blockchain-interactive.sh`
+
+- Then to execute the script, run: `./blockchain-interactive.sh`
+
+-----------------------------------------------
+
+#### *[Jump to learn how to interact with nodes. (View / add blocks and peers).](#Node)*
+----------------------------------
+
+# Table of Contents
+
+1. [What is Blockchain?](https://github.com/shrestaz/Blockchain-SI#what-is-blockchain)
+
+2. [Requirements](https://github.com/shrestaz/Blockchain-SI#requirements)
+
+3. [Implementation](https://github.com/shrestaz/Blockchain-SI#implementation)
+
+    3.1. [Architecture](https://github.com/shrestaz/Blockchain-SI#architecture) 
+  
+    3.2. [Block Structure](https://github.com/shrestaz/Blockchain-SI#block-structure) 
+  
+    3.3. [Block Hash](https://github.com/shrestaz/Blockchain-SI#block-hash) 
+  
+    3.4. [Storing of Blocks](https://github.com/shrestaz/Blockchain-SI#storing-the-blocks) 
+  
+    3.5. [Handling the new blocks](https://github.com/shrestaz/Blockchain-SI#handling-the-new-blocks) 
+  
+    3.6. [Nodes](https://github.com/shrestaz/Blockchain-SI#nodes)
+  
+4. [Alternative methods of mining](https://github.com/shrestaz/Blockchain-SI#alternative-methods-of-mining)
+
+---------------------------------
+ 
+ 
+## 1. What is Blockchain?
 
 Blockchain is a technology that allows for fast, secure and transparent peer-to-peer transfer of digital goods including money and intellectual property. It allows for those information to be distributed and not copied. It can also be defined as an incorruptible digital ledger of transactions.
 
@@ -22,7 +69,9 @@ The use cases of this technology has spread like wildfire. It is used widely on 
 
 *Source: https://blockgeeks.com/guides/what-is-blockchain-technology/*
 
-## Requirements:
+--------------------------------------------------
+
+## 2. Requirements:
 
 The following are the formal requirements for the project.
 
@@ -38,12 +87,14 @@ The following are the formal requirements for the project.
 
 [A complete description provided for the requirements can be found here.](https://github.com/datsoftlyngby/soft2017fall-system-integration-teaching-material/blob/master/assignments/Blockchain.md)
 
-## Implementation:
+----------------------------------------
+
+## 3. Implementation:
 
 In simple terms, our approach consists of a Node.js implementation with Express framework. It is instantiated by Docker-Compose as nodes with a peer-to-peer networking.
 It also uses HTTP interface to interact with a node and Websockets to communicate with other nodes as a peer-to-peer connection.
 
-### Architecture
+### 3.1. Architecture
 
 ![Architecture](https://lh3.googleusercontent.com/A8pty_TVR6pp6EPdl9CFXRFJw37ieJ5uxn7VeuT-ZmTh_SXL-4JI3aIhO_R7F4gDbzNWKDP1n039wQ=s350 "Architecture")
 
@@ -53,7 +104,7 @@ The nodes exposes two webservers.
 
 2. Peer-to-peer connection between nodes: Websocket server
 
-### Block Structure:
+### 3.2. Block Structure:
 
 The structure of the block consists of:
 
@@ -86,7 +137,7 @@ class Block {
 ![enter image description here](https://lh3.googleusercontent.com/gR1ffSlHGbPGq9JhC-2IGPiMqaPMNSzglGxzd93WbCNSffssOutCQ-oWdrg4AbTwPtiUV0lr-lCN0Q=s500 "block.png")
 
 
-### Block Hash:
+### 3.3. Block Hash:
 
 The following method mines the hash of the block with difficulty 4. This is to keep the integrity of the data.
 
@@ -103,7 +154,7 @@ mineBlock(difficulty) {
 }
 ```
 
-### Storing the Blocks:
+### 3.4. Storing the Blocks:
 To store the blockchain, an in-memory Javascript array is used. The first block, also known as “Genesis block” is hardcoded.
 
 ```sh
@@ -115,13 +166,12 @@ var blockchain = [getGenesisBlock()];
 
 ```
 
-### Handling the new blocks:
+### 3.5. Handling the new blocks:
 All the nodes are synchronized with each other. Meaning, each nodes listens for changes in other nodes. When a new block is mined and added to the chain in one of the nodes, the other nodes checks for its integrity. Only if the new block’s index number is greater than the existing block in the node’s chain, then the new block get’s added.
 
-### Nodes:
+### 3.6. Nodes:
 The user is able to interact with the nodes using an HTTP server.
 
-This will use
 ```sh
 var initHttpServer = () => {
     var app = express();
@@ -147,6 +197,8 @@ var initHttpServer = () => {
 ```
 To interact with the nodes, one can use programs such as POSTMAN or `curl` from the terminal. We'll use the latter for this example.
 
+<a name="Node"></a>
+
 The users can do the following with the nodes:
 
 - List all blocks: using `/blocks` route
@@ -171,9 +223,9 @@ curl -H "Content-type:application/json" --data '{"peer" : "ws://localhost:6001"}
 
 *Source: https://medium.com/@lhartikk/a-blockchain-in-200-lines-of-code-963cc1cc0e54*
 
+---------------------------------------
 
-
-## Alternative methods of mining:
+## 4. Alternative methods of mining
 
 There has been a server created for returning a hash of difficulty 4. That means the mined hash will start with four 0s.
 
@@ -209,13 +261,9 @@ The main problem with this approach is that on the message received from the chi
 
 The picture above shows how it works. Only the `main.js` is executed with the command `node main.js` and in the method `_addBlock`,  the mining will be done.
 
+On other hand, if the project was implemented with Java, then we could have used Futures structure and the mining implement successfully. 
+
 *Source: https://stackoverflow.com/questions/23667086/why-is-my-variable-unaltered-after-i-modify-it-inside-of-a-function-asynchron*<br>
 *Source: https://stackoverflow.com/questions/37357843/run-node-script-from-within-a-node-script*<br>
 *Source: https://stackoverflow.com/questions/13371113/how-can-i-execute-a-node-js-module-as-a-child-process-of-a-node-js-program*<br>
 *Source: https://nodejs.org/api/process.html*<br>
-
-On other hand, if the project was implemented with Java, then we could have used Futures structure and the mining implement successfully. 
-
-
-
-
