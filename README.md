@@ -69,7 +69,8 @@ The structure of the block consists of:
 
 - Nonce: This is the Proof-of-Work part of the blockchain, calculated by the method `mineblock()`. This is calculated until the mined hash has a difficulty of level 4 (which can be adjusted as needed), meaning the first 4 values of the above mined hash equals to 0.
 
-```class Block {
+```sh
+class Block {
     constructor(index, previousHash, timestamp, data, hash) {
         this.index = index;
         this.previousHash = previousHash;
@@ -78,6 +79,7 @@ The structure of the block consists of:
         this.hash = this.calculateHash();
         this.mineBlock();
     }
+}
 ```
 
 
