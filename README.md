@@ -209,7 +209,7 @@ The main problem with this approach is that on the message received from the chi
 
 The picture above shows how it works. Only the `main.js` is executed with the command `node main.js` and in the method `_addBlock`,  the mining will be done.
 
-*Source: https://stackoverflow.com/questions/23667086/why-is-my-variable-unaltered-after-i-modify-it-inside-of-a-function-asynchron*
+*Source: https://stackoverflow.com/questions/23667086/why-is-my-variable-unaltered-after-i-modify-it-inside-of-a-function-asynchron*<br></br>
 *Source: https://stackoverflow.com/questions/37357843/run-node-script-from-within-a-node-script*
 *Source: https://stackoverflow.com/questions/13371113/how-can-i-execute-a-node-js-module-as-a-child-process-of-a-node-js-program*
 
