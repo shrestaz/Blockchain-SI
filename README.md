@@ -104,7 +104,7 @@ mineBlock(difficulty) {
 ### Storing the Blocks:
 To store the blockchain, an in-memory Javascript array is used. The first block, also known as “Genesis block” is hardcoded.
 
-```
+```sh
 var getGenesisBlock = () => {
     return new Block(0, "0", 1465154705, "I'm the first block. My friends call me Genesis block.", "0");
 };
@@ -120,7 +120,7 @@ All the nodes are synchronized with each other. Meaning, each nodes listens for 
 The user is able to interact with the nodes using an HTTP server.
 
 This will use
-```
+```sh
 var initHttpServer = () => {
     var app = express();
     app.use(bodyParser.json());
