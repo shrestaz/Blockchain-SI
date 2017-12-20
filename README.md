@@ -88,17 +88,17 @@ The structure of the block consists of:
 
 The following method mines the hash of the block with difficulty 4. This is to keep the integrity of the data.
 
-```
-    calculateHash() {
-        return CryptoJS(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString();
+```sh
+calculateHash() {
+   return CryptoJS(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString();
     }
   
-    mineBlock(difficulty) {
-        this.nonce = 0;
-        while (this.hash.substring(0, 4) !== "0000") {
-          this.nonce++;
-          this.hash = this.calculateHash();
-      }
+mineBlock(difficulty) {
+   this.nonce = 0;
+   while (this.hash.substring(0, 4) !== "0000") {
+     this.nonce++;
+     this.hash = this.calculateHash();
+}
 ```
 
 ### Storing the Blocks:
